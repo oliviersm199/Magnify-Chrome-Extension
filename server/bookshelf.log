@@ -1,0 +1,5 @@
+2017-04-15 09:30:25,554 - __main__ - ERROR - Page not found: /favicon.ico
+2017-04-15 09:30:59,336 - __main__ - ERROR - Unhandled Exception: global name 'get_text_from_file' is not defined
+2017-04-15 09:37:07,196 - __main__ - ERROR - Unhandled Exception: global name 'remove_english_stop_words' is not defined
+2017-04-15 09:37:57,772 - __main__ - ERROR - Unhandled Exception: global name 'word_tokenize' is not defined
+2017-04-15 09:39:50,553 - __main__ - ERROR - Unhandled Exception: 'ascii' codec can't decode byte 0xe2 in position 0: ordinal not in range(128)
