@@ -5,11 +5,13 @@ import web_scraping
 import settings
 import natural_language_proc as nlp
 app = Flask(__name__)
-##settings.configure_app(app)
+
+@app.route('/')
+def home():
+    return "Hello World",200
 
 
-
-@app.route('/',methods=["POST"])
+@app.route('/article',methods=["POST"])
 def save_article():
     random_file_name = str(uuid.uuid4())
     current_dt = str(datetime.datetime.now())
