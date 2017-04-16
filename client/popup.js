@@ -8,8 +8,8 @@ function renderStatus(statusText) {
 document.addEventListener('DOMContentLoaded', function() {
   getCurrentTabHtml(function(results){
     var htmlPage = results;
-    request.post("http://127.0.0.1:5000",htmlPage,function(httpResponse){
-      
+    request.post("http://127.0.0.1:5000/article",htmlPage,function(httpResponse){
+      console.log(httpResponse);
     });
   });
 });

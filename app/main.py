@@ -1,7 +1,6 @@
 from flask import Flask, jsonify,request, abort
 import uuid
 import datetime
-import web_scraping
 import settings
 import natural_language_proc as nlp
 app = Flask(__name__)
@@ -17,22 +16,18 @@ def save_article():
     current_dt = str(datetime.datetime.now())
 
     page = request.get_data()
-
+    keywords = nlp.get_keywords(page)
     # Save Raw HTML to disk
-    random_file_name = str(uuid.uuid4())
-    html_file_name = "articles/" + random_file_name + "-"  + current_dt + ".html"
-    with open(html_file_name,'w') as filename:
-        filename.write(page)
+    #random_file_name = str(uuid.uuid4())
+    #html_file_name = "articles/" + random_file_name + "-"  + current_dt + ".html"
+    #with open(html_file_name,'w') as filename:
+    #    filename.write(page)
 
-    # Retrieve text from file,
-    text_file = web_scraping.get_text_from_html(page)
-    token_words = nlp.tokenize_text(text_file)
-    key_words = nlp.remove_english_stop_words(token_words)
+    # Retrieve text from file
 
     return jsonify({"id":random_file_name,
                     "datetime":current_dt,
-                    "key_words":key_words,
-                    "token_words":token_words})
+                    "keywords":keywords})
 
 
 
