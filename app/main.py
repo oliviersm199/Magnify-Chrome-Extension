@@ -3,6 +3,7 @@ import uuid
 import datetime
 import settings
 import natural_language_proc as nlp
+from api_integration.ny_times import get_nytimes_article_urls
 app = Flask(__name__)
 
 @app.route('/')
@@ -24,10 +25,11 @@ def save_article():
     #    filename.write(page)
 
     # Retrieve text from file
-
+    ny_times = get_nytimes_article_urls(keywords)
     return jsonify({"id":random_file_name,
                     "datetime":current_dt,
-                    "keywords":keywords})
+                    "keywords":keywords,
+                    "ny_times":ny_times})
 
 
 

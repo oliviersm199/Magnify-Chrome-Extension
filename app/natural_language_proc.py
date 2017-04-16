@@ -41,4 +41,4 @@ def get_keywords(text):
     lemma_words = lemmanize_text(ascii_only)
     key_words = remove_english_stop_words(lemma_words)
     document_freq = Counter(key_words)
-    return document_freq.most_common(10)
+    return [ keyword[0] for keyword in document_freq.most_common(10) ]
