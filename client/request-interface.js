@@ -13,14 +13,16 @@ var request = {
         req.send();
     },
 
-    post: function(url, content, callback) {
+    post: function(url, content, callback_success,callback_failure) {
         var req = new XMLHttpRequest();
         req.open("POST", url);
         req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         req.onreadystatechange = function() {
             if (req.readyState == 4) {
                 if (req.status == 200) {
-                    callback(req);
+                    callback_success(req);
+                }else{
+                  callback_failure(req);
                 }
             }
         }
