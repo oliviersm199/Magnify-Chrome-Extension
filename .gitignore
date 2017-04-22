@@ -1,3 +1,4 @@
 server/articles/*
 *.pyc
 *.DS_Store
+*.log
