@@ -32,23 +32,5 @@ def save_article():
                     "ny_times":ny_times})
 
 
-
-# @app.errorhandler(404)
-# def page_not_found(error):
-# 	app.logger.error('Page not found: %s', (request.path))
-# 	return jsonify({"error":"Not found","code":404})
-#
-#
-# @app.errorhandler(500)
-# def internal_server_error(error):
-#     app.logger.error('Server Error: %s', (error))
-#     return jsonify({"error":"Server Error","code":500})
-#
-# @app.errorhandler(Exception)
-# def unhandled_exception(e):
-#     app.logger.error('Unhandled Exception: %s', (e))
-#     return jsonify({"error":"Server Error","code":500})
-
-
 if __name__ == '__main__':
     app.run(host="127.0.0.1",port=5000,debug=True,threaded=True)

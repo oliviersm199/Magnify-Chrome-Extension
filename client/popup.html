@@ -8,10 +8,19 @@
 
 <head>
     <title>Getting Started Extension's Popup</title>
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+
+    <!-- Materialized Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
     <style>
         body {
             font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
             font-size: 100%;
+            min-width: 800px;
         }
 
         #status {
@@ -19,11 +28,28 @@
             white-space: pre;
             text-overflow: ellipsis;
             overflow: hidden;
-            max-width: 400px;
+        }
+
+        #title {
+            text-align: center;
+        }
+
+        #title>h4 {
+            display: inline-block;
+        }
+
+        #title>a {
+            float: right;
+        }
+
+        #image-navbar {
+            height: 16px;
         }
     </style>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Compiled and minified JavaScript -->
+    <script src="jquery-2.1.1.min.js"></script>
+    <script src="materialize.min.js"></script>
 
     <!--
       - JavaScript and HTML must be in separate files: see our Content Security
@@ -34,11 +60,31 @@
     <script src="chrome-api-interface.js"></script>
     <script src="request-interface.js"></script>
     <script src="popup.js"></script>
+    <script src="ui_handling.js"></script>
 </head>
 
 <body>
-    <div id="status"></div>
-    <img id="image-result" hidden>
+    <nav class="white black-text">
+        <div class="nav-wrapper">
+            <div class="brand-logo black-text">
+                <img src="icon.png" id="image-navbar"></img> Magnify
+            </div>
+            <ul id="nav-mobile" class="right">
+                <li><i class="material-icons waves-effect waves-light" id="close-page">close</i></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Links get uploaded into the status div below.  -->
+    <div class="container">
+        <div class="center-align">
+            <div class="progress" id="progressbar">
+                <div class="indeterminate"></div>
+            </div>
+        </div>
+        <ul class="collection" id="status">
+        </ul>
+    </div>
+
 </body>
 
 </html>
