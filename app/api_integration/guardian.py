@@ -1,7 +1,7 @@
 import requests
 
 class GuardianClient:
-    api_key = "test"
+    api_key = "33923dfd-ff29-4b38-8245-ec52320277c2"
     api_url = "http://content.guardianapis.com/search"
 
     def __call__(self, keywords):
