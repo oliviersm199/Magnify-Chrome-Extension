@@ -1,6 +1,8 @@
 import api_integration.ny_times as ny_times
+import api_integration.guardian as guardian
 
-api_integrations = {"ny_times":ny_times.NYTimesClient}
+api_integrations = {"ny_times":ny_times.NYTimesClient,
+                    "guardian":guardian.GuardianClient}
 
 
 def get_articles(keywords):
