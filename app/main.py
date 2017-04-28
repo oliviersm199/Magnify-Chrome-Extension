@@ -3,7 +3,8 @@ import uuid
 import datetime
 import settings
 import natural_language_proc as nlp
-from api_integration.ny_times import get_nytimes_article_urls
+import api_integration.ny_times
+import api_integration.article_accumulator as article_a
 app = Flask(__name__)
 
 @app.route('/')
@@ -12,24 +13,29 @@ def home():
 
 
 @app.route('/article',methods=["POST"])
-def save_article():
+def process_article():
+
+    # generate a random file name and a current datetime
     random_file_name = str(uuid.uuid4())
     current_dt = str(datetime.datetime.now())
 
     page = request.get_data()
-    keywords = nlp.get_keywords(page)
-    # Save Raw HTML to disk
-    #random_file_name = str(uuid.uuid4())
-    #html_file_name = "articles/" + random_file_name + "-"  + current_dt + ".html"
-    #with open(html_file_name,'w') as filename:
-    #    filename.write(page)
 
-    # Retrieve text from file
-    ny_times = get_nytimes_article_urls(keywords)
-    return jsonify({"id":random_file_name,
+    # push page text through nlp pipeline
+    processor = nlp.NaturalLanguageProcessor()
+    keywords = processor.get_keywords(page)
+
+
+    return_dict = {"id":random_file_name,
                     "datetime":current_dt,
-                    "keywords":keywords,
-                    "ny_times":ny_times})
+                    "keywords":keywords}
+
+    api_results = article_a.get_articles(keywords)
+
+    for result in api_results.keys():
+        return_dict[result] = api_results[result]
+
+    return jsonify(return_dict)
 
 
 if __name__ == '__main__':
