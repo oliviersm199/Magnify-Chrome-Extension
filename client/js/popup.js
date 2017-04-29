@@ -86,14 +86,25 @@ function renderLink(link_text, link_url,link_img,link_name) {
 document.addEventListener('DOMContentLoaded', function() {
   getCurrentTabHtml(function(results) {
     var htmlPage = results;
+
+    // if our http request suceeds, let's do this.
     var function_success = function(httpResponse) {
       var jsonObject = JSON.parse(httpResponse.response);
       console.log(jsonObject)
       updatePageWithLinks(jsonObject);
     };
+
+    // if it fails, let's do that.
     var function_fail = function(httpResponse) {
       updatePageWithError();
     }
-    request.post("http://127.0.0.1:5000/article", htmlPage, function_success, function_fail);
+
+    //get the user id
+    var user_id = user.useUserId(function(user_id){
+      var sentToServer = {"page":htmlPage,"user_id":user_id};
+      
+      // make a post to the page
+      request.post("http://127.0.0.1:5000/article", sentToServer, function_success, function_fail);
+    });
   });
 });

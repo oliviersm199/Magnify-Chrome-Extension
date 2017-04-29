@@ -10,12 +10,9 @@
     "default_popup": "popup.html",
     "default_title": "Magnify"
   },
-  "background": {
-    "scripts": ["background.js"]
-  },
   "permissions": [
     "activeTab",
-    "tts",
+    "storage",
     "http://*/"
   ]
 }

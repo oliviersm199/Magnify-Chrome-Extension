@@ -1,4 +1,4 @@
-// makes a simple http request
+// abstracts away requests for get and post.
 var request = {
     get: function(url, callback) {
         var req = new XMLHttpRequest();
@@ -26,6 +26,19 @@ var request = {
                 }
             }
         }
-        req.send(content);
+
+        // organize into this structure: param1=value1&param2=value2.....
+        var contentSend = "";
+        for (var property in content) {
+          if (content.hasOwnProperty(property)) {
+            contentSend += property.toString() + "=" + content[property];
+            contentSend += "&"
+          }
+        }
+
+        //remove the extra & at the end.
+        contentSend = contentSend.substring(0,contentSend.length-1);
+
+        req.send(contentSend);
     }
 }

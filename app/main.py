@@ -14,16 +14,18 @@ def home():
 
 @app.route('/article',methods=["POST"])
 def process_article():
-
     # generate a random file name and a current datetime
     random_file_name = str(uuid.uuid4())
     current_dt = str(datetime.datetime.now())
 
-    page = request.get_data()
+    content = request.form['page']
+    user_id = request.form['user_id']
+    print(user_id)
+
 
     # push page text through nlp pipeline
     processor = nlp.NaturalLanguageProcessor()
-    keywords = processor.get_keywords(page)
+    keywords = processor.get_keywords(content)
 
 
     return_dict = {"id":random_file_name,
