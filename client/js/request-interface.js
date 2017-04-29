@@ -31,7 +31,7 @@ var request = {
         var contentSend = "";
         for (var property in content) {
           if (content.hasOwnProperty(property)) {
-            contentSend += property.toString() + "=" + content[property];
+            contentSend += property.toString() + "=" + encodeURIComponent(content[property]);
             contentSend += "&"
           }
         }
