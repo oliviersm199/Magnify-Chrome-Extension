@@ -10,7 +10,11 @@ class NYTimesClient:
         '''
         query = self._construct_nytimes_query(keywords)
         answers = self._make_nytimes_request(query).json()
-        return [{"headline":result['headline']['main'],"url":result['web_url']} for result in answers['response']['docs']]
+        try:
+            return [{"headline":result['headline']['main'],"url":result['web_url']} for result in answers['response']['docs']]
+        except KeyError as e:
+            print(answers)
+            return []
 
     def _construct_nytimes_query(self,keywords):
         '''

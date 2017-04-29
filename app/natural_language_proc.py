@@ -18,7 +18,7 @@ class NaturalLanguageProcessor:
         lemma_words = self.lemmanize_text(ascii_only)
         key_words = self.remove_english_stop_words(lemma_words)
         document_freq = collections.Counter(key_words)
-        return [ keyword[0] for keyword in document_freq.most_common(10) ]
+        return [keyword[0] for keyword in document_freq.most_common(10)]
 
     def tokenize_text(self, text):
         words = WordPunctTokenizer().tokenize(text)
@@ -27,16 +27,16 @@ class NaturalLanguageProcessor:
     def remove_english_stop_words(self, words):
         return [w for w in words if w.lower() not in self.stopwords]
 
-    def normalize_words(self,text):
+    def normalize_words(self, text):
         return sorted([w.lower() for w in text])
 
     def filter_punctuation(self, text):
         punctuation_filter = "^[" + string.punctuation + "]$"
-        return [w for w in text if re.search(punctuation_filter,w)]
+        return [w for w in text if re.search(punctuation_filter, w)]
 
     def filter_only_ascii_words(self, text):
         contains_words_filter = "^[" + string.ascii_lowercase + "]+$"
-        return [w for w in text if re.search(contains_words_filter,w)]
+        return [w for w in text if re.search(contains_words_filter, w)]
 
     def lemmanize_text(self, tokens):
         lemmatizer = WordNetLemmatizer()

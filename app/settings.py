@@ -1,6 +1,7 @@
 import logging
 import os
 
+
 class BaseConfig(object):
     DEBUG = True
     TESTING = True

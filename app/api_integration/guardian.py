@@ -10,8 +10,10 @@ class GuardianClient:
         '''
         query = self._construct_guardian_query(keywords)
         answers = self._make_guardian_request(query).json()
-
-        return [{"headline":result['webTitle'],"url":result['webUrl']} for result in answers['response']['results']]
+        try:
+            return [{"headline":result['webTitle'],"url":result['webUrl']} for result in answers['response']['results']]
+        except KeyError as e:
+            print(answers)
 
     def _construct_guardian_query(self,keywords):
         '''
