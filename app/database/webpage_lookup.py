@@ -10,7 +10,7 @@ class WebpageLookup:
     def get_webpage_lookup(user_id):
         pass
 
-    def modify_webpage_lookup(user_id):
+    def replace_webpage_lookup(user_id):
         pass
 
     def delete_webpage_lookup(user_id):
