@@ -1,5 +1,5 @@
 
-var supported_sites = ['ny_times', 'guardian'];
+var supported_sites = ['ny_times', 'guardian','hackernews'];
 
 // Source: https://www.frankmitchell.org/2015/01/fisher-yates/
 function shuffle(array) {
@@ -43,7 +43,6 @@ function updatePageWithLinks(jsonObject) {
 
   // we have our list of articles, now put them in a random order
   shuffle(list_of_articles)
-  console.log(list_of_articles)
 
   for (var i in list_of_articles) {
     var link_img = list_of_articles[i]['site'] + '.png';
@@ -82,6 +81,16 @@ function renderLink(link_text, link_url,link_img,link_name) {
   document.getElementById('status').appendChild(a);
 }
 
+function createChart(user_keywords){
+  var keys = [];
+  var values = [];
+  for(var i in user_keywords){
+    keys.push(user_keywords[i]['word']);
+    values.push(user_keywords[i]['count']);
+  }
+  createBarChart(keys,values);
+}
+
 
 document.addEventListener('DOMContentLoaded', function() {
   getCurrentTabHtml(function(results) {
@@ -91,7 +100,11 @@ document.addEventListener('DOMContentLoaded', function() {
     var function_success = function(httpResponse) {
       var jsonObject = JSON.parse(httpResponse.response);
       console.log(jsonObject)
+
       updatePageWithLinks(jsonObject);
+
+      var user_keywords = jsonObject['user_keywords'];
+      createChart(user_keywords);
     };
 
     // if it fails, let's do that.
@@ -102,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function() {
     //get the user id
     var user_id = user.useUserId(function(user_id){
       var sentToServer = {"page":htmlPage,"user_id":user_id};
-      
+
       // make a post to the page
       request.post("http://127.0.0.1:5000/article", sentToServer, function_success, function_fail);
     });

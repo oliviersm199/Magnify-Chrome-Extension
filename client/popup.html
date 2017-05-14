@@ -1,81 +1,97 @@
 <!doctype html>
 <html>
+
 <head>
-    <title>Magnify - Popup</title>
+  <title>Magnify - Popup</title>
 
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
 
-    <!-- Materialized Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Materialized Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
-    <style>
-        body {
-            font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
-            font-size: 100%;
-            min-width: 800px;
-        }
+  <style>
+    body {
+      font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+      font-size: 100%;
+      min-width: 800px;
+    }
 
-        #status {
-            /* avoid an excessively wide status text */
-            white-space: pre;
-            text-overflow: ellipsis;
-            overflow: hidden;
-        }
+    #status {
+      /* avoid an excessively wide status text */
+      white-space: pre;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
 
-        #title {
-            text-align: center;
-        }
+    #title {
+      text-align: center;
+    }
 
-        #title>h4 {
-            display: inline-block;
-        }
+    #title>h4 {
+      display: inline-block;
+    }
 
-        #title>a {
-            float: right;
-        }
+    #title>a {
+      float: right;
+    }
 
-        #image-navbar {
-            height: 16px;
-        }
-    </style>
+    #image-navbar {
+      height: 16px;
+    }
+  </style>
 
-    <!-- Third Party Libraries -->
-    <script src="js/libraries/materialize/jquery-2.1.1.min.js"></script>
-    <script src="js/libraries/materialize/materialize.min.js"></script>
+  <!-- Third Party Libraries -->
+  <script src="js/libraries/materialize/jquery-2.1.1.min.js"></script>
+  <script src="js/libraries/materialize/materialize.min.js"></script>
+  <script src="js/libraries/chart/chart.min.js"></script>
 
-    <!-- Application Code -->
-    <script src="js/chrome-api-interface.js"></script>
-    <script src="js/request-interface.js"></script>
-    <script src="js/popup.js"></script>
-    <script src="js/ui_handling.js"></script>
-    <script src="js/user_profile.js"></script>
+  <!-- Application Code -->
+  <script src="js/chrome-api-interface.js"></script>
+  <script src="js/request-interface.js"></script>
+  <script src="js/keywords_chart.js"></script>
+  <script src="js/popup.js"></script>
+  <script src="js/ui_handling.js"></script>
+  <script src="js/user_profile.js"></script>
 </head>
 
 <body>
-    <nav class="white black-text">
-        <div class="nav-wrapper">
-            <div class="brand-logo black-text">
-                <img src="img/app/icon.png" id="image-navbar"></img> Magnify
-            </div>
-            <ul id="nav-mobile" class="right">
-              <li><i class="material-icons waves-effect waves-light" id="settings-page">settings</i></li>
-              <li><i class="material-icons waves-effect waves-light" id="close-page">close</i></li>
-            </ul>
-        </div>
-    </nav>
-    <!-- Links get uploaded into the status div below.  -->
-    <div class="container">
-        <div class="row">
-            <div class="center-align">
-                <div class="progress" id="progressbar">
-                    <div class="indeterminate"></div>
-                </div>
-            </div>
-            <ul class="collection" id="status">
-            </ul>
-        </div>
+  <nav class="white black-text">
+    <div class="nav-wrapper">
+      <div class="brand-logo black-text">
+        <img src="img/app/icon.png" id="image-navbar"></img> Magnify
+      </div>
+      <ul id="nav-mobile" class="right">
+        <li><i class="material-icons waves-effect waves-light" id="settings-page">settings</i></li>
+        <li><i class="material-icons waves-effect waves-light" id="close-page">close</i></li>
+      </ul>
     </div>
+  </nav>
+  <br>
+  <!-- Links get uploaded into the status div below.  -->
+  <div class="container">
+    <div class="row">
+      <div class="col s12">
+        <ul class="tabs">
+          <li class="tab col s3"><a class="active" href="#articles">Articles</a></li>
+          <li class="tab col s3"><a  href="#keywords">Keywords</a></li>
+        </ul>
+      </div>
+      <div id="articles" class="col s12">
+        <div class="center-align">
+          <div class="progress" id="progressbar">
+            <div class="indeterminate"></div>
+          </div>
+        </div>
+        <ul class="collection" id="status">
+        </ul>
+      </div>
+      <div id="keywords" class="col s8 offset-s2">
+        <canvas id="myChart" width="150" height="150" style="padding:10px;"></canvas>
+      </div>
+    </div>
+  </div>
 </body>
+
 </html>
