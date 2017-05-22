@@ -1,7 +1,7 @@
 import requests
-
+import os
 class NYTimesClient:
-    api_key = "a1461f82f3954f03a8c4e4528d53cf23"
+    api_key = os.environ['NY_TIMES_KEY']
     api_url = "https://api.nytimes.com/svc/search/v2/articlesearch.json"
 
     def __call__(self, keywords):
