@@ -13,3 +13,7 @@ Technologies Used:
 - Javascript
   - Materialize UI
   - Chart.js 
+
+# Screenshots
+
+<img src = "https://github.com/oliviersm199/Magnify-Chrome-Extension/blob/master/usage-shot.png?raw=true"></img>
